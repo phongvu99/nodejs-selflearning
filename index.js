@@ -63,7 +63,7 @@ mongoose.connect(uri, {
             });
             await user.save();
         }
-        app.listen(port, () => {
+        app.listen(process.env.PORT || port, () => {
             console.log('App started on port:', port);
         })
     }).catch((err) => {
