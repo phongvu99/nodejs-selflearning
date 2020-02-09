@@ -1,0 +1,34 @@
+<%- include('../templates/header.ejs');  %>
+<link rel="stylesheet" href="/styles/forms.css">
+<link rel="stylesheet" href="/styles/product.css">
+</head>
+
+<body>
+    <%- include('../templates/navbar.ejs');  %>
+    <main>
+        <form class="product-form" action="/admin/<%= editing ? 'edit-product' : 'add-product' %>" method="POST">
+            <div class="form-control">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title" value="<%= editing ? product.title : '' %>">
+            </div>
+            <div class="form-control">
+                <label for="imgURL">Image URL</label>
+                <input type="text" name="imgURL" id="imgURL" value="<%= editing ? product.imgURL : '' %>">
+            </div>
+            <div class="form-control">
+                <label for="price">Price</label>
+                <input type="number" step="0.01" name="price" id="price" value="<%= editing ? product.price : '' %>">
+            </div>
+            <div class="form-control">
+                <label for="desc">Description</label>
+                <textarea name="desc" id="desc" cols="30" rows="10"><%= editing ? product.desc : '' %></textarea>
+            </div>
+            <% if (editing) { %>
+                <input type="hidden" name="productID" id="productID" value="<%= product._id %>">
+            <% } %> 
+            <button class="btn" type="submit"><%= editing ? 'Update Product' : 'Add Product' %>  </button>
+        </form>
+    </main>
+</body>
+
+<%- include('../templates/footer.ejs');  %>

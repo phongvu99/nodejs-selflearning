@@ -1,0 +1,29 @@
+<%- include('../templates/header.ejs');  %>
+<link rel="stylesheet" href="/styles/orders.css">
+</head>
+
+<body>
+    <%- include('../templates/navbar.ejs');  %>
+    <main>
+        <% if(orders.length > 0) { %>
+        <ul class="orders">
+            <% for(let order of orders) { %>
+            <li class="orders__item">
+                <h1>Order - # <%= order._id %> </h1>
+                <ul class="orders__products">
+                    <% for(let p of order.items) { %>
+                    <li class="orders__products-item">
+                        <%= p.product.title %> (<%= p.quantity %>)
+                    </li>
+                    <% } %>
+                </ul>
+            </li>
+            <% } %>
+        </ul>
+        <% } else { %>
+        <h1>Nothing here for now!</h1>
+        <% } %>
+
+    </main>
+
+    <%- include('../templates/footer.ejs');  %>

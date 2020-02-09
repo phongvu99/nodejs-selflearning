@@ -1,0 +1,16 @@
+extends ../templates/header.pug
+
+block title
+  title Add Product
+
+block styles
+    link(rel="stylesheet" href="/styles/forms.css")
+    link(rel="stylesheet" href="/styles/product.css")
+
+block content
+  main
+    form.product-form(action="/admin/add-product" method="POST")
+      .form-control
+        label(for="title") Title
+        input#title(type="text" name="title")
+      button.btn(type="submit") Add Product
