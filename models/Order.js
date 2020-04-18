@@ -18,6 +18,10 @@ const orderSchema = new Schema({
             type: String,
             required: true
         },
+        email: {
+            type: String,
+            required: true
+        },
         userID: {
             type: Schema.Types.ObjectId,
             ref: 'User',
@@ -26,4 +30,4 @@ const orderSchema = new Schema({
     }
 })
 
-module.exports = mongoose.model('Order', orderSchema);  
+module.exports = mongoose.model('Order', orderSchema);

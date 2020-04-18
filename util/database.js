@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const MongoClient = require('mongodb').MongoClient;
 
 const DB_PASSWORD = process.env.DB_PASSWORD;

@@ -1,0 +1,17 @@
+<%- include('../templates/header.ejs');  %>
+</head>
+
+<body>
+    <%- include('../templates/navbar.ejs');  %>
+    <main>
+        <% if (errorMsg) { %>
+            <div class="user-message user-message--error">
+                 <%= errorMsg %> 
+            </div>
+        <% } else { %>
+        <h1>Well, that sucks!</h1>
+        <p>Something is wrong, we're doing our best to resolve it!</p>
+        <% } %> 
+    </main>
+    
+<%- include('../templates/footer.ejs');  %>

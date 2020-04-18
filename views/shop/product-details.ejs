@@ -7,11 +7,13 @@
         <h1><%= product.title %></h1>
         <hr>
         <div class="image">
-            <img src="<%= product.imgURL %>" alt="<%= product.title %>">
+            <img src="/<%= product.imgURL %>" alt="<%= product.title %>">
         </div>
         <h2>$<%= product.price %></h2>
         <p><%= product.desc %></p>
+        <% if (isLoggedIn) { %> 
         <%- include('../templates/add-to-cart.ejs'); %> 
+        <% } %> 
     </main>
 
 <%- include('../templates/footer.ejs');  %>

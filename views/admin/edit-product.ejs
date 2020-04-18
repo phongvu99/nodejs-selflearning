@@ -6,26 +6,35 @@
 <body>
     <%- include('../templates/navbar.ejs');  %>
     <main>
-        <form class="product-form" action="/admin/<%= editing ? 'edit-product' : 'add-product' %>" method="POST">
+        <% if (errorMsg) { %>
+            <div class="user-message user-message--error">
+                 <%= errorMsg %> 
+            </div>
+        <% } %>
+        <form class="product-form" action="/admin/<%= editing ? 'edit-product' : 'add-product' %>" method="POST" enctype="multipart/form-data">
             <div class="form-control">
                 <label for="title">Title</label>
-                <input type="text" name="title" id="title" value="<%= editing ? product.title : '' %>">
+                <input class="<%= validationErrors.find(e => e.param === 'title') ? 'invalid' : '' %>" 
+                type="text" name="title" id="title" value="<%= editing || hasError ? product.title : '' %>">
             </div>
             <div class="form-control">
-                <label for="imgURL">Image URL</label>
-                <input type="text" name="imgURL" id="imgURL" value="<%= editing ? product.imgURL : '' %>">
+                <label for="img">Image</label>
+                <input type="file" name="img" id="img">
             </div>
             <div class="form-control">
                 <label for="price">Price</label>
-                <input type="number" step="0.01" name="price" id="price" value="<%= editing ? product.price : '' %>">
+                <input class="<%= validationErrors.find(e => e.param === 'price') ? 'invalid' : '' %>"
+                type="number" step="0.01" name="price" id="price" value="<%= editing || hasError ? product.price : '' %>">
             </div>
             <div class="form-control">
                 <label for="desc">Description</label>
-                <textarea name="desc" id="desc" cols="30" rows="10"><%= editing ? product.desc : '' %></textarea>
+                <textarea class="<%= validationErrors.find(e => e.param === 'desc') ? 'invalid' : '' %>"
+                name="desc" id="desc" cols="30" rows="10"><%= editing || hasError ? product.desc : '' %></textarea>
             </div>
             <% if (editing) { %>
                 <input type="hidden" name="productID" id="productID" value="<%= product._id %>">
             <% } %> 
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <button class="btn" type="submit"><%= editing ? 'Update Product' : 'Add Product' %>  </button>
         </form>
     </main>
